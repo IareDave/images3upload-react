@@ -8,7 +8,7 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-
+import FileUpload from './auth/components/FileUpload/CreateBook'
 import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
@@ -43,6 +43,9 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
+          <Route user={user} exact path='/' render={() => (
+            <FileUpload user={user} alert={this.alert} />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
