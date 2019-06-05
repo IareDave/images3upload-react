@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
-
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-import FileUpload from './auth/components/FileUpload/CreateBook'
+import FileUpload from './components/FileUploadd/CreateBook'
 import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
@@ -43,7 +42,7 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
-          <Route user={user} exact path='/' render={() => (
+          <Route user={user} exact path='/uploads' render={() => (
             <FileUpload user={user} alert={this.alert} />
           )} />
           <Route path='/sign-up' render={() => (

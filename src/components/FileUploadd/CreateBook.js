@@ -3,67 +3,67 @@ import { withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios'
-import apiUrl from '../../../apiConfig'
+import apiUrl from '../../apiConfig'
+// const getFormFields = require('../../lib/get-form-fields')
 
 class FileUpload extends Component {
   constructor () {
     super()
 
     this.state = {
-      url: ''
+      file: ''
     }
   }
 
+   handleChange = (event) => {
+     this.setState({ file: event.target.files[0] })
+   }
+
   handleSubmit = (event) => {
     event.preventDefault()
-
+    const formData = new FormData()
+    formData.append('image', this.state.file)
+    // const data = getFormFields(event.target)
+    // this.setState({ url: this.event.})
     axios({
       url: `${apiUrl}/uploads`,
       method: 'post',
       headers: {
-        'Authorization': `Token token=${this.props.user.token}`
+        'Authorization': `Token token=${this.props.user.token}`,
+        'content-type': 'multipart/formdata'
       },
-      data: {
-        upload: {
-          url: this.state.url
-        }
-      }
+      data: formData
     })
       .then(response => this.setState({
-        upload: response.data.upload
+        file: response.data.file
       }))
-      .then(() => this.props.alert(`${this.state.url} has been added to the library!`, 'success'))
+      .then(() => this.props.alert(`${this.state.file} has been added to the library!`, 'success'))
       .then(() => this.props.history.push('/'))
       .catch(() => {
         this.props.alert('Whoops! Failed to add your upload. Please try again.', 'danger')
         this.setState({
-          url: ''
+          file: ''
         })
       })
   }
 
-  handleChange = event => this.setState({
-    [event.target.name]: event.target.value
-  })
+  // handleChange = event => this.setState({
+  //   [event.target.name]: event.target.value
+  // })
 
   resetForm = () => this.setState({
     url: ''
   })
 
   render () {
-    const { url } = this.state
-
     return (
-      <Form className="form" onSubmit={this.handleSubmit}>
+      <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
         <h2>Create upload</h2>
         <Form.Group controlId="uploadurl">
           <Form.Label>upload url</Form.Label>
           <Form.Control
-            encType="multipart/form-data"
-            method="post"
             type="file"
-            value={url}
-            name="url"
+            name="image"
             required
             onChange={this.handleChange}
             placeholder="Enter the upload url"
