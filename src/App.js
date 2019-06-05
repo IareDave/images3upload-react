@@ -42,7 +42,7 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
-          <Route user={user} exact path='/uploads' render={() => (
+          <AuthenticatedRoute user={user} path='/uploads' render={() => (
             <FileUpload user={user} alert={this.alert} />
           )} />
           <Route path='/sign-up' render={() => (

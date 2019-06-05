@@ -25,12 +25,12 @@ class FileUpload extends Component {
     formData.append('image', this.state.file)
     // const data = getFormFields(event.target)
     // this.setState({ url: this.event.})
+    console.log(formData)
     axios({
       url: `${apiUrl}/uploads`,
-      method: 'post',
+      method: 'POST',
       headers: {
-        'Authorization': `Token token=${this.props.user.token}`,
-        'content-type': 'multipart/formdata'
+        'Authorization': `Token token=${this.props.user.token}`
       },
       data: formData
     })
