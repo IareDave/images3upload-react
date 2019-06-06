@@ -7,7 +7,9 @@ import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
-import FileUpload from './components/FileUploadd/CreateBook'
+import FileUpload from './components/FileUpload/index'
+import Pictures from './components/FileUpload/Pictures'
+import PictureEdit from './components/FileUpload/PictureEdit'
 import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
@@ -42,8 +44,14 @@ class App extends Component {
           </Alert>
         ))}
         <main className="container">
-          <AuthenticatedRoute user={user} path='/uploads' render={() => (
+          <AuthenticatedRoute user={user} exact path='/create-uploads' render={() => (
             <FileUpload user={user} alert={this.alert} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/uploads' render={() => (
+            <Pictures user={user} alert={this.alert} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/uploads/:id/edit' render={() => (
+            <PictureEdit user={user} alert={this.alert} />
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />

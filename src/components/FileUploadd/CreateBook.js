@@ -25,7 +25,6 @@ class FileUpload extends Component {
     formData.append('image', this.state.file)
     // const data = getFormFields(event.target)
     // this.setState({ url: this.event.})
-    console.log(formData)
     axios({
       url: `${apiUrl}/uploads`,
       method: 'POST',
@@ -46,14 +45,6 @@ class FileUpload extends Component {
         })
       })
   }
-
-  // handleChange = event => this.setState({
-  //   [event.target.name]: event.target.value
-  // })
-
-  resetForm = () => this.setState({
-    url: ''
-  })
 
   render () {
     return (

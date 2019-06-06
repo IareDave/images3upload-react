@@ -1,49 +1,90 @@
-import React from 'react'
-import { post } from 'axios'
+import React, { Component } from 'react'
+import { withRouter, Redirect } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// const getFormFields = require('../../../lib/get-form-fields')
+// const getFormFields = require('../../lib/get-form-fields')
 
-class SimpleReactFileUpload extends React.Component {
-  constructor (props) {
-    super(props)
+class FileUpload extends Component {
+  constructor () {
+    super()
+
     this.state = {
-      file: null
+      file: '',
+      createdFileId: null
     }
-    this.onFormSubmit = this.onFormSubmit.bind(this)
-    this.onChange = this.onChange.bind(this)
-    this.fileUpload = this.fileUpload.bind(this)
   }
-  onFormSubmit (e) {
-    e.preventDefault() // Stop form submit
-    this.fileUpload(this.state.file).then((response) => {
-      console.log(response.data)
-    })
-  }
-  onChange (e) {
-    this.setState({ file: e.target.files[0] })
-  }
-  fileUpload (file) {
-    // const formData = new FormData()
-    // const fileToSend = formData.append('file', file)
-    console.log(file)
-    const config = {
+
+   handleChange = (event) => {
+     this.setState({ file: event.target.files[0] })
+   }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append('image', this.state.file)
+    // const data = getFormFields(event.target)
+    // this.setState({ url: this.event.})
+    axios({
+      url: `${apiUrl}/create-uploads`,
+      method: 'POST',
       headers: {
-        'Authorization': 'Token token=' + (this.user ? this.user.token : ''),
-        'Content-Type': 'multipart/form-data'
-      }
-    }
-    return post(`${apiUrl}/uploads`, file, config)
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: formData
+    })
+      .then(response => this.setState({
+        createdFileId: response.data.upload.id
+      }))
+      .then(() => this.props.alert(`${this.state.file} has been added to the library!`, 'success'))
+      // .then(() => this.props.history.push('/'))
+      .catch(() => {
+        this.props.alert('Whoops! Failed to add your upload. Please try again.', 'danger')
+        this.setState({
+          file: ''
+        })
+      })
   }
 
   render () {
+    const { createdFileId } = this.state
+
+    if (createdFileId) {
+      return <Redirect to={`/uploads/${createdFileId}`} />
+    }
+
     return (
-      <form onSubmit={this.onFormSubmit} encType="multipart/form-data">
-        <h1>File Upload</h1>
-        <input name="image[file]" type="file" onChange={this.onChange} />
-        <button name="submit" type="submit">Upload</button>
-      </form>
+      <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
+        <h2>Create upload</h2>
+        <Form.Group controlId="uploadurl">
+          <Form.Label>upload url</Form.Label>
+          <Form.Control
+            type="file"
+            name="image"
+            required
+            onChange={this.handleChange}
+            placeholder="Enter the upload url"
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          type="submit"
+          className="m-1"
+        >
+          Submit
+        </Button>
+        <Button
+          variant="danger"
+          type="button"
+          className="m-1"
+          onClick={this.resetForm}
+        >
+          Reset
+        </Button>
+      </Form>
     )
   }
 }
 
-export default SimpleReactFileUpload
+export default withRouter(FileUpload)

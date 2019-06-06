@@ -1,0 +1,27 @@
+handleSubmit = (event) => {
+  event.preventDefault()
+  const formData = new FormData()
+  formData.append('image', this.state.file)
+  // const data = getFormFields(event.target)
+  // this.setState({ url: this.event.})
+  console.log(formData)
+  axios({
+    url: `${apiUrl}/uploads`,
+    method: 'POST',
+    headers: {
+      'Authorization': `Token token=${this.props.user.token}`
+    },
+    data: formData
+  })
+    .then(response => this.setState({
+      file: response.data.file
+    }))
+    .then(() => this.props.alert(`${this.state.file} has been added to the library!`, 'success'))
+    .then(() => this.props.history.push('/'))
+    .catch(() => {
+      this.props.alert('Whoops! Failed to add your upload. Please try again.', 'danger')
+      this.setState({
+        file: ''
+      })
+    })
+}
