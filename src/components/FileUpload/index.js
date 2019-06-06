@@ -11,7 +11,7 @@ class FileUpload extends Component {
     super()
 
     this.state = {
-      file: '',
+      file: [],
       createdFileId: null
     }
   }

@@ -50,7 +50,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/uploads' render={() => (
             <Pictures user={user} alert={this.alert} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/uploads/:id/edit' render={() => (
+          <AuthenticatedRoute user={user} exact path='/uploads/:id' render={() => (
             <PictureEdit user={user} alert={this.alert} />
           )} />
           <Route path='/sign-up' render={() => (

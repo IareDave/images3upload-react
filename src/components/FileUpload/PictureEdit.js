@@ -3,7 +3,7 @@ import React from 'react'
 // import fileForm from '../shared/fileForm'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
@@ -12,45 +12,50 @@ class PictureEdit extends React.Component {
     super(props)
 
     this.state = {
-      file: []
+      file: [],
+      updated: false
     }
   }
 
-  async scomponentDidMount () {
+  async componentDidMount () {
     const response = await axios(`${apiUrl}/uploads/${this.props.match.params.id}`)
-    this.setState({ file: response.data.file })
+    this.setState({ file: response.data.uploads })
   }
 
   handleChange = (event) => {
-    const updateField = {
-      [event.target.name]: event.target.value
-    }
-
-    const editedfile = Object.assign(this.state.file, updateField)
-
-    this.setState({ file: editedfile })
+    this.setState({ file: event.target.files[0] })
   }
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault()
-    await axios({
+    const formData = new FormData()
+    formData.append('image', this.state.file)
+    axios({
       url: `${apiUrl}/uploads/${this.props.match.params.id}`,
       method: 'PATCH',
-      data: {
-        file: this.state.file,
-        updated: false
-      }
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: formData
     })
-
-    this.setState({ updated: true })
+      .then(response => this.setState({
+        updated: true }))
+      .then(() => this.props.alert(`${this.state.file} has been added to the library!`, 'success'))
+    // .then(() => this.props.history.push('/'))
+      .catch(() => {
+        this.props.alert('Whoops! Failed to add your upload. Please try again.', 'danger')
+        this.setState({
+          file: ''
+        })
+      })
   }
 
   render () {
-    const { updated } = this.state
+    // const { updated } = this.state
 
-    if (updated) {
-      return <Redirect to={`/uploads/${this.props.match.params.id}`} />
-    }
+    // if (updated) {
+    //   return <Redirect to={`/uploads/${this.props.match.params._id}`} />
+    // }
     /*       <div>
         <fileForm
           file={file}
@@ -92,4 +97,4 @@ class PictureEdit extends React.Component {
   }
 }
 
-export default PictureEdit
+export default withRouter(PictureEdit)
