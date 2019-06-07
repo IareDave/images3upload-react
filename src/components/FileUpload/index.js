@@ -4,6 +4,9 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import './index.scss'
+// import Avatar from 'react-avatar'
+
 // const getFormFields = require('../../lib/get-form-fields')
 
 class FileUpload extends Component {
@@ -56,34 +59,30 @@ class FileUpload extends Component {
     // }
 
     return (
-      <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
-        <h2>Create upload</h2>
-        <Form.Group controlId="uploadurl">
-          <Form.Label>upload url</Form.Label>
-          <Form.Control
-            type="file"
-            name="image"
-            required
-            onChange={this.handleChange}
-            placeholder="Enter the upload url"
-          />
-        </Form.Group>
-        <Button
-          variant="primary"
-          type="submit"
-          className="m-1"
-        >
+      <div className="po">
+        <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
+          <h2>Create upload</h2>
+          <Form.Group controlId="uploadurl">
+            <Form.Label>upload url</Form.Label>
+            <Form.Control
+              className="dropbox"
+              label="test"
+              type="file"
+              name="image"
+              required
+              onChange={this.handleChange}
+              placeholder="Enter the upload url"
+            />
+          </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+            className="m-1"
+          >
           Submit
-        </Button>
-        <Button
-          variant="danger"
-          type="button"
-          className="m-1"
-          onClick={this.resetForm}
-        >
-          Reset
-        </Button>
-      </Form>
+          </Button>
+        </Form>
+      </div>
     )
   }
 }

@@ -9,9 +9,10 @@ import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import FileUpload from './components/FileUpload/index'
 import Pictures from './components/FileUpload/Pictures'
-import Preview from './auth/components/Preview'
+// import CssBar from './components/FileUpload/CssBar'
 import PictureEdit from './components/FileUpload/PictureEdit'
-import Alert from 'react-bootstrap/Alert'
+// import Alert from 'react-bootstrap/Alert'
+import AutoDismissAlert from './AutoDismissAlert'
 
 class App extends Component {
   constructor () {
@@ -38,11 +39,10 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
+          <AutoDismissAlert
+            key={index}
+            alert={alert}
+          />
         ))}
         <main className="container">
           <AuthenticatedRoute user={user} exact path='/create-uploads' render={() => (
@@ -57,7 +57,6 @@ class App extends Component {
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
-          <Route path='/preview' component={Preview} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
