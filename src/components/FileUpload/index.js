@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios'
@@ -34,6 +34,7 @@ class FileUpload extends Component {
       },
       data: formData
     })
+      // .then(console.log)
       .then(response => this.setState({
         createdFileId: response.data.upload.id
       }))
@@ -48,11 +49,11 @@ class FileUpload extends Component {
   }
 
   render () {
-    const { createdFileId } = this.state
+    // const { createdFileId } = this.state
 
-    if (createdFileId) {
-      return <Redirect to={`/uploads/${createdFileId}`} />
-    }
+    // if (createdFileId) {
+    //   return <Redirect to={`/uploads/${createdFileId}`} />
+    // }
 
     return (
       <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">

@@ -58,9 +58,43 @@ class Pictures extends React.Component {
   // <Button variant="warning" onClick={() => this.handleUpdate(url._id)}>Update Picture</Button>
 
   render () {
+    const thumbsContainer = {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginTop: 16
+    }
+
+    const thumb = {
+      display: 'inline-flex',
+      borderRadius: 2,
+      border: '1px solid #eaeaea',
+      marginBottom: 8,
+      marginRight: 8,
+      width: 200,
+      height: 200,
+      padding: 4,
+      boxSizing: 'border-box'
+    }
+
+    const thumbInner = {
+      display: 'flex',
+      minWidth: 0,
+      overflow: 'hidden'
+    }
+
+    const img = {
+      display: 'block',
+      width: 'auto',
+      height: '100%'
+    }
     const url = this.state.upload.map(url => (
       <li key={url._id}>
-        <img src={url.file} />
+        <li style={thumb} key={url._id}>
+          <div style={thumbInner}>
+            <img src={url.file} />
+          </div>
+        </li>
         <Button variant="danger" onClick={() => this.handleDelete(url._id)}>Delete Picture</Button>
         <Link to={ '/uploads/' + url._id }><Button variant="success">Update A Movie</Button></Link>
       </li>
@@ -74,9 +108,9 @@ class Pictures extends React.Component {
     return (
       <div>
         <h3>All the file</h3>
-        <ul>
+        <aside style={thumbsContainer}>
           {url}
-        </ul>
+        </aside>
       </div>
     )
   }

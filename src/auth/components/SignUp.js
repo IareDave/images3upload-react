@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import './fancyform.scss'
 
 import { signUp, signIn } from '../api'
 import messages from '../messages'
@@ -11,7 +12,8 @@ class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
+      toggleForm: false
     }
   }
 
@@ -36,42 +38,29 @@ class SignUp extends Component {
       })
   }
 
+  handleForm = (event) => {
+    this.setState({ toggleForm: !this.state.toggleForm })
+    event.stopPropagation()
+  };
+
   render () {
-    const { email, password, passwordConfirmation } = this.state
+    // const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onSignUp}>
-        <h3>Sign Up</h3>
-
-        <label htmlFor="email">Email</label>
-        <input
-          required
-          name="email"
-          value={email}
-          type="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          name="password"
-          value={password}
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
-        <input
-          required
-          name="passwordConfirmation"
-          value={passwordConfirmation}
-          type="password"
-          placeholder="Confirm Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+      <div className="app">
+        <div className={this.state.toggleForm ? 'background content' : 'content'}>
+          <div className="header hidden"></div>
+          <div className={this.state.toggleForm ? 'expanded button' : 'button'}>
+            <div onClick={this.handleForm} className={this.state.toggleForm ? 'hidden sign-up' : 'sign-up'}>SIGN UP</div>
+            <form onSubmit={this.onSignUp} className={this.state.toggleForm ? 'form' : 'hidden form'}>
+              <input onChange={this.handleChange} className="authput" name="email" type="email" placeholder="Email Id"/>
+              <input onChange={this.handleChange} className="authput" name="password" type="password" placeholder="Password"/>
+              <input onChange={this.handleChange} className="authput" name="passwordConfirmation" type="password" placeholder="Confirm Password"/>
+              <button onSubmit={this.onSignUp} type="submit" className={this.state.toggleForm ? 'butt' : 'butt hidden'}><span className="text">DONE</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
     )
   }
 }

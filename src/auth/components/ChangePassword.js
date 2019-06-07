@@ -10,7 +10,8 @@ class ChangePassword extends Component {
 
     this.state = {
       oldPassword: '',
-      newPassword: ''
+      newPassword: '',
+      toggleForm: false
     }
   }
 
@@ -33,33 +34,29 @@ class ChangePassword extends Component {
       })
   }
 
+  handleForm = (event) => {
+    this.setState({ toggleForm: !this.state.toggleForm })
+    event.stopPropagation()
+  };
+
   render () {
-    const { oldPassword, newPassword } = this.state
+    // const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onChangePassword}>
-        <h3>Change Password</h3>
 
-        <label htmlFor="oldpw">Old Password</label>
-        <input
-          required
-          name="oldPassword"
-          value={oldPassword}
-          type="password"
-          placeholder="Old Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="newPassword">New Password</label>
-        <input
-          required
-          name="newPassword"
-          value={newPassword}
-          type="password"
-          placeholder="New Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Change Password</button>
-      </form>
+      <div className="app">
+        <div className={this.state.toggleForm ? 'background content' : 'content'}>
+          <div className="header hidden"></div>
+          <div className={this.state.toggleForm ? 'expanded button' : 'button'}>
+            <div onClick={this.handleForm} className={this.state.toggleForm ? 'hidden sign-up' : 'sign-up'}>Change PW</div>
+            <form onSubmit={this.onSignIn} className={this.state.toggleForm ? 'form' : 'hidden form'}>
+              <input onChange={this.handleChange} className="authput" name="oldPassword" type="password" placeholder="Old password"/>
+              <input onChange={this.handleChange} className="authput" name="newPassword" type="password" placeholder="New password"/>
+              <button onSubmit={this.onSignIn} type="submit" className={this.state.toggleForm ? 'butt' : 'butt hidden'}><span className="text">DONE</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
     )
   }
 }

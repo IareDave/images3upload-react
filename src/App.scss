@@ -3,6 +3,10 @@ $warning: #f1e681;
 $error: #f08181;
 $charcoal: #ccc;
 
+body {
+  background-color: $charcoal;
+}
+
 .flash-success,
 .flash-warning,
 .flash-error {
