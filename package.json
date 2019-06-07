@@ -1,7 +1,7 @@
 {
   "name": "images3upload-react",
   "homepage": "https://iaredave.github.io/images3upload-react",
-  "version": "0.1.0",
+  "version": "0.1.0", 
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
