@@ -13,12 +13,7 @@ class CssBar extends React.Component {
         </label>
         <div id="sidebarMenu">
           <ul className="sidebarMenuInner">
-            <li>Jelena Jovanovic <span>Web Developer</span></li>
-            <li><a href="https://vanila.io" rel="noopener noreferrer" target="_blank">Company</a></li>
-            <li><a href="https://instagram.com/plavookac" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-            <li><a href="https://twitter.com/plavookac" rel="noopener noreferrer" target="_blank">Twitter</a></li>
-            <li><a href="https://www.youtube.com/channel/UCDfZM0IK6RBgud8HYGFXAJg" rel="noopener noreferrer" target="_blank">YouTube</a></li>
-            <li><a href="https://www.linkedin.com/in/plavookac/" rel="noopener noreferrer" target="_blank">Linkedin</a></li>
+
           </ul>
         </div>
         <div id="center" className="main center">

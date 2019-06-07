@@ -13,7 +13,7 @@ class AutoDismissAlert extends React.Component {
   componentDidMount () {
     this.timer = setInterval(() => {
       this.setState({ show: false })
-    }, 5000)
+    }, 3000)
   }
 
   componentWillUnmount () {
@@ -25,18 +25,20 @@ class AutoDismissAlert extends React.Component {
   render () {
     const { alert } = this.props
     return (
-      <Alert
-        dismissible
-        show={this.state.show}
-        variant={alert.type}
-        onClose={this.handleClose}
-      >
-        <div className="fashion">
-          <Alert.Heading>
-            {alert.message}
-          </Alert.Heading>
-        </div>
-      </Alert>
+      <div className="fashion-alert">
+        <Alert
+          dismissible
+          show={this.state.show}
+          variant={alert.type}
+          onClose={this.handleClose}
+        >
+          <div className="fashion">
+            <Alert.Heading>
+              {alert.message}
+            </Alert.Heading>
+          </div>
+        </Alert>
+      </div>
     )
   }
 }

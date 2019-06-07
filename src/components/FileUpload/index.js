@@ -41,10 +41,10 @@ class FileUpload extends Component {
       .then(response => this.setState({
         createdFileId: response.data.upload.id
       }))
-      .then(() => this.props.alert(`${this.state.file} has been added to the library!`, 'success'))
+      .then(() => this.props.alert(`${this.state.file} has been uploaded`, 'success'))
       // .then(() => this.props.history.push('/'))
       .catch(() => {
-        this.props.alert('Whoops! Failed to add your upload. Please try again.', 'danger')
+        this.props.alert('File upload has failed', 'danger')
         this.setState({
           file: ''
         })
@@ -60,28 +60,36 @@ class FileUpload extends Component {
 
     return (
       <div className="po">
-        <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
-          <h2>Create upload</h2>
-          <Form.Group controlId="uploadurl">
-            <Form.Label>upload url</Form.Label>
-            <Form.Control
-              className="dropbox"
-              label="test"
-              type="file"
-              name="image"
-              required
-              onChange={this.handleChange}
-              placeholder="Enter the upload url"
-            />
-          </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
-            className="m-1"
-          >
+        <label className="fileContainer">
+          <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
+            <h1 style={{ color: 'red' }}>Create Upload</h1>
+            <div className="wrapper">
+              <div className="file-upload">
+                <Form.Group controlId="uploadurl">
+                  <Form.Label></Form.Label>
+                  <i className="fa fa-arrow-up"></i>
+                  <Form.Control
+                    className="dropbox"
+                    label="test"
+                    type="file"
+                    name="image"
+                    required
+                    onChange={this.handleChange}
+                    placeholder="Enter the upload url"
+                  />
+                  <i className="fa fa-arrow-up"></i>
+                </Form.Group>
+              </div>
+            </div>
+            <Button
+              variant="primary"
+              type="submit"
+              className="m-1"
+            >
           Submit
-          </Button>
-        </Form>
+            </Button>
+          </Form>
+        </label>
       </div>
     )
   }

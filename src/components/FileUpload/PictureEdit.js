@@ -40,10 +40,10 @@ class PictureEdit extends React.Component {
     })
       .then(response => this.setState({
         updated: true }))
-      .then(() => this.props.alert(`${this.state.file} has been added to the library!`, 'success'))
+      .then(() => this.props.alert(`${this.state.file} has been updated`, 'success'))
     // .then(() => this.props.history.push('/'))
       .catch(() => {
-        this.props.alert('Whoops! Failed to add your upload. Please try again.', 'danger')
+        this.props.alert('File update has failed.', 'danger')
         this.setState({
           file: ''
         })
@@ -65,34 +65,37 @@ class PictureEdit extends React.Component {
         />
       </div> */
     return (
-      <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
-        <h2>Create upload</h2>
-        <Form.Group controlId="uploadurl">
-          <Form.Label>upload url</Form.Label>
-          <Form.Control
-            type="file"
-            name="image"
-            required
-            onChange={this.handleChange}
-            placeholder="Enter the upload url"
-          />
-        </Form.Group>
-        <Button
-          variant="primary"
-          type="submit"
-          className="m-1"
-        >
+      <div className="po">
+        <label className="fileContainer">
+          <Form className="form" onSubmit={this.handleSubmit} encType="multipart/form-data">
+            <h1 style={{ color: 'green' }}>Update</h1>
+            <div className="wrapper">
+              <div className="file-upload">
+                <Form.Group controlId="uploadurl">
+                  <Form.Label></Form.Label>
+                  <Form.Control
+                    className="dropbox"
+                    label="test"
+                    type="file"
+                    name="image"
+                    required
+                    onChange={this.handleChange}
+                    placeholder="Enter the upload url"
+                  />
+                  <i className="fa fa-arrow-up"></i>
+                </Form.Group>
+              </div>
+            </div>
+            <Button
+              variant="primary"
+              type="submit"
+              className="m-1"
+            >
           Submit
-        </Button>
-        <Button
-          variant="danger"
-          type="button"
-          className="m-1"
-          onClick={this.resetForm}
-        >
-          Reset
-        </Button>
-      </Form>
+            </Button>
+          </Form>
+        </label>
+      </div>
     )
   }
 }

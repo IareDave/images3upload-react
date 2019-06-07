@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Img = styled.div`
+const Img = styled.img`
     display: 'block';
     width: 'auto';
     height: '100%';

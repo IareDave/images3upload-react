@@ -4,7 +4,7 @@ import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
 // import Layout from '../shared/Layout'
 import { Link } from 'react-router-dom'
-import Img from './stylecomp'
+// import Img from './stylecomp'
 
 class Pictures extends React.Component {
   constructor (props) {
@@ -91,11 +91,7 @@ class Pictures extends React.Component {
       <div key={url._id}>
         <div style={thumb}>
           <li style={thumbInner}>
-            <div >
-              <Img>
-                <img onClick={() => this.handleDelete(url._id)} src={url.file} />
-              </Img>
-            </div>
+            <img src={url.file}/>
           </li>
         </div>
         <Button variant="danger" onClick={() => this.handleDelete(url._id)}>Delete Picture</Button>

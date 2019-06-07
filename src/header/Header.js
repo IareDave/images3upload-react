@@ -56,15 +56,7 @@ const Header = ({ user }) => (
         </ul>
       </div>
       <div id="center" className="main center">
-        <div className="mainInner">
 
-        </div>
-        <div className="mainInner">
-
-        </div>
-        <div className="mainInner">
-
-        </div>
       </div>
     </div>
   </header>
