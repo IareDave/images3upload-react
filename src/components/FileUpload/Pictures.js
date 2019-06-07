@@ -4,6 +4,7 @@ import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
 // import Layout from '../shared/Layout'
 import { Link } from 'react-router-dom'
+import './Preview.css'
 
 class Pictures extends React.Component {
   constructor (props) {
@@ -58,40 +59,40 @@ class Pictures extends React.Component {
   // <Button variant="warning" onClick={() => this.handleUpdate(url._id)}>Update Picture</Button>
 
   render () {
-    const thumbsContainer = {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      marginTop: 16
-    }
-
-    const thumb = {
-      display: 'inline-flex',
-      borderRadius: 2,
-      border: '1px solid #eaeaea',
-      marginBottom: 8,
-      marginRight: 8,
-      width: 200,
-      height: 200,
-      padding: 4,
-      boxSizing: 'border-box'
-    }
-
-    const thumbInner = {
-      display: 'flex',
-      minWidth: 0,
-      overflow: 'hidden'
-    }
-
-    const img = {
-      display: 'block',
-      width: 'auto',
-      height: '100%'
-    }
+    // const thumbsContainer = {
+    //   display: 'flex',
+    //   flexDirection: 'row',
+    //   flexWrap: 'wrap',
+    //   marginTop: 16
+    // }
+    //
+    // const thumb = {
+    //   display: 'inline-flex',
+    //   borderRadius: 2,
+    //   border: '1px solid #eaeaea',
+    //   marginBottom: 8,
+    //   marginRight: 8,
+    //   width: 200,
+    //   height: 200,
+    //   padding: 4,
+    //   boxSizing: 'border-box'
+    // }
+    //
+    // const thumbInner = {
+    //   display: 'flex',
+    //   minWidth: 0,
+    //   overflow: 'hidden'
+    // }
+    //
+    // const img = {
+    //   display: 'block',
+    //   width: 'auto',
+    //   height: '100%'
+    // }
     const url = this.state.upload.map(url => (
       <li key={url._id}>
-        <li style={thumb} key={url._id}>
-          <div style={thumbInner}>
+        <li key={url._id}>
+          <div >
             <img src={url.file} />
           </div>
         </li>
@@ -104,13 +105,31 @@ class Pictures extends React.Component {
     //     <img src={this.state.picture} />
     //   </li>
     // ))
-
+    // <div>
+    //   <h3>All the file</h3>
+    //   <aside style={thumbsContainer}>
+    //     {url}
+    //   </aside>
+    // </div>
     return (
       <div>
-        <h3>All the file</h3>
-        <aside style={thumbsContainer}>
-          {url}
-        </aside>
+        <div className="con"></div>
+
+        <section className="one">
+          <div className="wrapper">{url}</div>
+        </section>
+
+        <section className="two">
+          <div className="wrapper">{url}</div>
+        </section>
+
+        <section className="three">
+          <div className="wrapper">{url}</div>
+        </section>
+
+        <section className="four">
+          <div className="wrapper">{url}</div>
+        </section>
       </div>
     )
   }

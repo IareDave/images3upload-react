@@ -9,6 +9,7 @@ import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import FileUpload from './components/FileUpload/index'
 import Pictures from './components/FileUpload/Pictures'
+import Preview from './auth/components/Preview'
 import PictureEdit from './components/FileUpload/PictureEdit'
 import Alert from 'react-bootstrap/Alert'
 
@@ -56,6 +57,7 @@ class App extends Component {
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route path='/preview' component={Preview} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
