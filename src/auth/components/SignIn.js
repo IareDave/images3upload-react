@@ -29,7 +29,7 @@ class SignIn extends Component {
       .then(() => alert(messages.signInSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
-        console.error(error)
+        (error)
         this.setState({ email: '', password: '' })
         alert(messages.signInFailure, 'danger')
       })

@@ -34,7 +34,7 @@ class Pictures extends React.Component {
             this.setState({ upload: res.data.uploads })
           })
           .then(() => this.props.alert('Has been deleted!', 'success'))
-        // .catch(console.error)
+        // .catch()
       })
   }
 
@@ -55,7 +55,7 @@ class Pictures extends React.Component {
   //           this.setState({ upload: res.data.uploads })
   //         })
   //         .then(() => this.props.alert('Has been updated!', 'success'))
-  //       // .catch(console.error)
+  //       // .catch()
   //     })
   // }
   // <Link to={ '/uploads/' + url._id + '/edit' }><Button variant="success">Update A Movie</Button></Link>
@@ -75,8 +75,8 @@ class Pictures extends React.Component {
       border: '1px solid #eaeaea',
       marginBottom: 8,
       marginRight: 8,
-      width: 800,
-      height: 500,
+      width: 400,
+      height: 400,
       padding: 4,
       boxSizing: 'border-box'
     }

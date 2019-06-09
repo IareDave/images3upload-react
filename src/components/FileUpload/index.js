@@ -41,7 +41,7 @@ class FileUpload extends Component {
       .then(response => this.setState({
         createdFileId: response.data.upload.id
       }))
-      .then(() => this.props.alert(`${this.state.file} has been uploaded`, 'success'))
+      .then(() => this.props.alert('Your file has been uploaded', 'success'))
       // .then(() => this.props.history.push('/'))
       .catch(() => {
         this.props.alert('File upload has failed', 'danger')

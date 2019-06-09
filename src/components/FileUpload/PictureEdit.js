@@ -40,7 +40,7 @@ class PictureEdit extends React.Component {
     })
       .then(response => this.setState({
         updated: true }))
-      .then(() => this.props.alert(`${this.state.file} has been updated`, 'success'))
+      .then(() => this.props.alert('Your file has been updated', 'success'))
     // .then(() => this.props.history.push('/'))
       .catch(() => {
         this.props.alert('File update has failed.', 'danger')

@@ -28,7 +28,7 @@ class ChangePassword extends Component {
       .then(() => alert(messages.changePasswordSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
-        console.error(error)
+        (error)
         this.setState({ oldPassword: '', newPassword: '' })
         alert(messages.changePasswordFailure, 'danger')
       })
