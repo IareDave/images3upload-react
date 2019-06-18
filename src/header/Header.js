@@ -32,11 +32,11 @@ const alwaysOptions = (
 //   { user ? authenticatedOptions : unauthenticatedOptions }
 //   { alwaysOptions }
 // </nav>
-const Header = ({ user }) => (
+const Header = ({ user, toggleSideBar }) => (
   <header className="main-header">
     <div>
       <div className="headerr" />
-      <input type="checkbox" className="openSidebarMenu" id="openSidebarMenu" />
+      <input type="checkbox" defaultChecked={toggleSideBar} className="openSidebarMenu" id="openSidebarMenu" />
       <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
         <div className="spinner diagonal part-1" />
         <div className="spinner horizontal" />

@@ -4,6 +4,7 @@ import './fancyform.scss'
 
 import { signUp, signIn } from '../api'
 import messages from '../messages'
+import { WelcomeFontMessage } from './HomePageStyle'
 
 class SignUp extends Component {
   constructor () {
@@ -50,7 +51,7 @@ class SignUp extends Component {
         <div className={this.state.toggleForm ? 'background content' : 'content'}>
           <div className="header hidden"></div>
           <div className={this.state.toggleForm ? 'expanded button' : 'button'}>
-            <div onClick={this.handleForm} className={this.state.toggleForm ? 'hidden sign-up' : 'sign-up'}>SIGN UP</div>
+            <div onClick={this.handleForm} className={this.state.toggleForm ? 'hidden sign-up' : 'sign-up'}><WelcomeFontMessage>SIGN UP</WelcomeFontMessage></div>
             <form onSubmit={this.onSignUp} className={this.state.toggleForm ? 'form' : 'hidden form'}>
               <input onChange={this.handleChange} className="authput" name="email" type="email" placeholder="Email Id"/>
               <input onChange={this.handleChange} className="authput" name="password" type="password" placeholder="Password"/>

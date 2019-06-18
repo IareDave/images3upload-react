@@ -1,11 +1,25 @@
 import React from 'react'
 import './CssBar.css'
 class CssBar extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      toggleSideBar: true
+    }
+    // Create the ref
+    this.textInput = React.createRef()
+  }
+
+  componentDidMount () {
+    this.textInput.checked = true
+    console.log('test')
+  }
+
   render () {
     return (
       <div>
         <div className="headerr" />
-        <input type="checkbox" className="openSidebarMenu" id="openSidebarMenu" />
+        <input ref={this.textInput} checked={this.state.toggleSideBar} type="checkbox" className="openSidebarMenu" id="openSidebarMenu" />
         <label htmlFor="openSidebarMenu" className="sidebarIconToggle">
           <div className="spinner diagonal part-1" />
           <div className="spinner horizontal" />

@@ -5,6 +5,7 @@ import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
+import HomePage from './auth/components/HomePage'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import FileUpload from './components/FileUpload/index'
@@ -20,7 +21,8 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      toggleSideBar: true
     }
   }
 
@@ -33,11 +35,11 @@ class App extends Component {
   }
 
   render () {
-    const { alerts, user } = this.state
+    const { alerts, user, toggleSideBar } = this.state
 
     return (
       <React.Fragment>
-        <Header user={user} />
+        <Header user={user} toggleSideBar={toggleSideBar} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
             key={index}
@@ -56,6 +58,9 @@ class App extends Component {
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
+          )} />
+          <Route exact path='/' render={() => (
+            <HomePage alert={this.alert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />

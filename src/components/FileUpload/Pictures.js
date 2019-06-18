@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 // import Layout from '../shared/Layout'
 import { Link } from 'react-router-dom'
 // import Img from './stylecomp'
+import Avatar from 'react-avatar'
 
 class Pictures extends React.Component {
   constructor (props) {
@@ -70,13 +71,15 @@ class Pictures extends React.Component {
     }
 
     const thumb = {
+      marginLeft: 200,
       display: 'inline-flex',
       borderRadius: 2,
       border: '1px solid #eaeaea',
       marginBottom: 8,
+      marginTop: 50,
       marginRight: 8,
-      width: 400,
-      height: 400,
+      width: 110,
+      height: 110,
       padding: 4,
       boxSizing: 'border-box'
     }
@@ -87,15 +90,20 @@ class Pictures extends React.Component {
       overflow: 'hidden'
     }
 
+    const previewContainer = {
+    }
+
     const url = this.state.upload.map(url => (
-      <div key={url._id}>
+      <div style={previewContainer} key={url._id}>
         <div style={thumb}>
           <li style={thumbInner}>
-            <img src={url.file}/>
+            <Avatar size="100" round={true} src={url.file}/>
           </li>
         </div>
-        <Button variant="danger" onClick={() => this.handleDelete(url._id)}>Delete Picture</Button>
-        <Link to={ 'uploads/' + url._id }><Button variant="success">Update A Movie</Button></Link>
+        <div>
+          <Button style={{ float: 'right' }} size="sm" variant="outline-danger" onClick={() => this.handleDelete(url._id)}>Delete</Button>
+          <Link style={{ float: 'right' }} to={ 'uploads/' + url._id }><Button size="sm" variant="outline-success">Update</Button></Link>
+        </div>
       </div>
     ))
     // const pictures = this.state.file.map(picture => (

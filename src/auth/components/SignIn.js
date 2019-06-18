@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import './fancyform.scss'
 import { signIn } from '../api'
 import messages from '../messages'
+import { WelcomeFontMessage } from './HomePageStyle'
 
 class SignIn extends Component {
   constructor () {
@@ -48,7 +49,7 @@ class SignIn extends Component {
         <div className={this.state.toggleForm ? 'background content' : 'content'}>
           <div className="header hidden"></div>
           <div className={this.state.toggleForm ? 'expanded button' : 'button'}>
-            <div onClick={this.handleForm} className={this.state.toggleForm ? 'hidden sign-up' : 'sign-up'}>SIGN IN</div>
+            <div onClick={this.handleForm} className={this.state.toggleForm ? 'hidden sign-up' : 'sign-up'}><WelcomeFontMessage>SIGN IN</WelcomeFontMessage></div>
             <form onSubmit={this.onSignIn} className={this.state.toggleForm ? 'form' : 'hidden form'}>
               <input onChange={this.handleChange} className="authput" name="email" type="email" placeholder="Email Id"/>
               <input onChange={this.handleChange} className="authput" name="password" type="password" placeholder="Password"/>

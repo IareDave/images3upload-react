@@ -4,12 +4,12 @@ body {
     font-family: 'Varela Round', sans-serif;
 }
 .headerr {
-    position: absolute;
+    position: fixed;
     display: block;
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #FC466B;
+    background-color: #AAAAAA;
     height: 70px!important;
     overflow: hidden;
     z-index: 10;
@@ -33,14 +33,15 @@ body {
     letter-spacing: 1.25px;
 }
 #sidebarMenu {
+    z-index: 5;
     height: 100%;
     position: fixed;
     left: 0;
-    width: 250px;
+    width: 20%;
     margin-top: 60px;
-    transform: translateX(-250px);
+    transform: translateX(-270px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg, #FC466B 0%, #3F5EFB 100%);
+    background: linear-gradient(180deg, #AAAAAA 0%, #AAAAAA 100%);
 }
 .sidebarMenuInner{
     margin:0;
@@ -52,21 +53,29 @@ body {
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 12px;
     padding: 20px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
 }
 .sidebarMenuInner li span{
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.50);
 }
 .sidebarMenuInner li a{
+    display: block;
+    height: 100%;
+    width: 100%;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
+}
+.sidebarMenuInner li:hover {
+  background: #fc756f;
+  color: #fff;
 }
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
@@ -81,7 +90,7 @@ input[type=checkbox] {
     transition: all 0.3s;
     box-sizing: border-box;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     z-index: 99;
     height: 100%;
     width: 100%;
